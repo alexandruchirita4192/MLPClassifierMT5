@@ -11,7 +11,7 @@ pip install MetaTrader5 pandas numpy scikit-learn skl2onnx onnx
 
 ## Exemplu rulare
 ```powershell
-python train_mt5_mlp_classifier.py --symbol XAGUSD --timeframe M15 --bars 20000 --horizon-bars 8 --train-ratio 0.70 --output-dir output_mlp_h8
+python train_mt5_mlp_classifier.py --symbol XAGUSD --timeframe M15 --bars 20000 --horizon-bars 8 --train-ratio 0.70 --output-dir output_mlp_XAGUSD_M15_h8
 ```
 
 ## Pasii pentru MT5
