@@ -133,7 +133,7 @@ def split_train_test(df: pd.DataFrame, train_ratio: float) -> Tuple[pd.DataFrame
     train_df = df.iloc[:split_idx].copy()
     test_df = df.iloc[split_idx:].copy()
     if len(train_df) < 1500 or len(test_df) < 250:
-        raise ValueError("To little examples after the split. Increase the bar number or adjust the train_ratio.")
+        raise ValueError("Too little examples after the split. Increase the bar number or adjust the train_ratio.")
     return train_df, test_df
 
 
