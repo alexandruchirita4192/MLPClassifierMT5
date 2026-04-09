@@ -418,10 +418,10 @@ def write_run_in_mt5(
     entry_prob_threshold: float,
     min_prob_gap: float,
 ) -> None:
-    txt = f"""MODEL: MLPClassifier (3 clase)
-SIMBOL: {args.symbol}
+    txt = f"""MODEL: MLPClassifier (3 classes)
+SYMBOL: {args.symbol}
 TIMEFRAME: {args.timeframe}
-ORIZONT TARGET (bare): {args.horizon_bars}
+HORIZON TARGET (bars): {args.horizon_bars}
 
 TRAIN UTC:
   start: {train_start}
@@ -436,7 +436,7 @@ RECOMMENDED INPUTS FOR THE EA:
   InpMinProbGap        = {min_prob_gap:.6f}
   InpMaxBarsInTrade    = {args.horizon_bars}
 
-PASII:
+STEPS:
 1. Copy the ml_strategy_classifier_mlp.onnx file near EA .mq5.
 2. Recompile the EA in MetaEditor.
 3. Run the Strategy Tester ONLY on the window from TEST UTC from above.
@@ -476,12 +476,12 @@ def main() -> None:
     feat_df = build_features(raw, args.horizon_bars)
     feat_df.to_csv(output_dir / "all_features_snapshot.csv", index=False)
 
-    print(f"Set total cu features: {len(feat_df)} randuri")
+    print(f"Total set with features: {len(feat_df)} rows")
 
     train_df, test_df = split_train_test(feat_df, args.train_ratio)
-    print(f"Train: {len(train_df)} randuri | Test: {len(test_df)} randuri")
+    print(f"Train: {len(train_df)} rows | Test: {len(test_df)} rows")
     print(f"Train window: {train_df['time'].iloc[0]} -> {train_df['time'].iloc[-1]}")
-    print(f"Test window : {test_df['time'].iloc[0]} -> {test_df['time'].iloc[-1]}")
+    print(f"Test window: {test_df['time'].iloc[0]} -> {test_df['time'].iloc[-1]}")
 
     train_df.to_csv(output_dir / "train_features_snapshot.csv", index=False)
     test_df.to_csv(output_dir / "test_features_snapshot.csv", index=False)
@@ -494,7 +494,7 @@ def main() -> None:
         prob_quantile=args.prob_quantile,
         margin_quantile=args.margin_quantile,
     )
-    print("\nRezumat walk-forward pe train:")
+    print("\nWalk-forward summary on train:")
     print(json.dumps(walk_forward, indent=2))
 
     barrier = compute_return_barrier(train_df, args.label_quantile)
@@ -524,9 +524,9 @@ def main() -> None:
     train_summary = summarize_predictions(train_pred)
     test_summary = summarize_predictions(test_pred)
 
-    print(f"\nBariera de etichetare abs(fwd_ret_h): {barrier:.8f}")
-    print(f"Prag probabilitate intrare derivat din predictii train: {entry_prob_threshold:.6f}")
-    print(f"Prag diferenta probabilitati derivat din predictii train: {min_prob_gap:.6f}")
+    print(f"\nLabel barrier abs(fwd_ret_h): {barrier:.8f}")
+    print(f"Entry probability threshold derived from train predictions: {entry_prob_threshold:.6f}")
+    print(f"Minimum probability gap derived from train predictions: {min_prob_gap:.6f}")
 
     print("\nTrain summary:")
     print(json.dumps(train_summary, indent=2))
