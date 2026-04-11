@@ -1,4 +1,5 @@
 # MLP MT5 strategy files
+MLP has been ranked first between individual classifiers on the data I have tested, followed by LightGBM and HistGradientBooster. On other data, an weighted ensemble of MLP 0.25, LightGBM 0.25, 0.50 HistGradientBooster was better than MLP, LightGBM or HistGradientBooster individually.
 
 ## Files
 - `train_mt5_mlp_classifier.py`
