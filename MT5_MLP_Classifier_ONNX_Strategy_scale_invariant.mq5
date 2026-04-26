@@ -1,5 +1,5 @@
 #property strict
-#property version   "1.01"
+#property version   "1.02"
 #property description "EA MT5: MLP classifier ONNX, run in Strategy Tester"
 #property description "With trend filter + ATR volatility filter + optional kill switch"
 #property description "Model features are scale-invariant; raw ATR is kept only for stops/filters"
