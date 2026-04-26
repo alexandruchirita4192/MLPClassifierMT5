@@ -1,5 +1,5 @@
 # MLP MT5 strategy files
-MLP has been ranked first between individual classifiers on the data I have tested, followed by LightGBM and HistGradientBoosting. On other data, an weighted ensemble of MLP 0.25, LightGBM 0.25, 0.50 HistGradientBoosting was better than MLP, LightGBM or HistGradientBoosting individually.
+MLP has been ranked first between individual classifiers on the data I have tested, followed by LightGBM and HistGradientBoosting. On other data, an weighted ensemble of MLP 0.25, LightGBM 0.25, 0.50 HistGradientBoosting was better than MLP, LightGBM or HistGradientBoosting individually. In tests for XAGUSD it is doubling the money in ~6 months (10000 to ~20000). Disclaimer: Tested data based on history cannot guarantee future data, meaning that XAGUSD might behave differently generating less or no profit even if in tests it is profitable with some optimized parameters.
 
 ## Files
 - `train_mt5_mlp_classifier.py`
